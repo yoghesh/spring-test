@@ -18,8 +18,11 @@
 
 <body>
 	<h2>Customer SignUp Form - JSR303 @Valid example</h2>
-
-	<form:form method="POST" commandName="customer" action="hello/customer?language_zh_CN">
+	<c:forEach items="${errors}" var="error">
+    <%-- do want you want with ${error} --%>
+    <c:out value="${error.defaultMessage}" />
+	</c:forEach>
+	<form:form method="POST" commandName="customer" action="hello/customer">
 		<form:errors path="*" cssClass="errorblock" element="div" />
 		<table>
 			<tr>

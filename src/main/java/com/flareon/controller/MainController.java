@@ -24,14 +24,16 @@ public class MainController {
 	}
 	
 	@RequestMapping(value = "/customer", method = RequestMethod.POST)
-	public ModelAndView cisto(@Valid Customers custo, BindingResult res, Model mod)
+	public String cisto(@Valid Customers custo, BindingResult res, Model mod)
 	{
 		if(res.hasErrors())
 		{
+			mod.addAttribute("errors", res.getAllErrors());
 			mod.addAttribute("customer", custo);
-			return new ModelAndView("Customers");}
+			return "home";
+			}
 		else
-		{return new ModelAndView("success");}
+		{return "success";}
 	}
 	
 }
